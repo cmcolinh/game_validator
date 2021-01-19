@@ -4,14 +4,21 @@ require 'bundler/setup'
 require 'game_validator'
 require 'method_call_count'
 
+class MockValidationErrors
+  def initialize(messages = []);@messages = messages;end
+  def messages;@messages;end
+end
+
 class MockValidationResult
   def initialize(options = {})
     @result = options
     @success = options[:success?]
+    @errors = options[:errors] || MockValidationErrors::new
   end
   def result;@result.dup;end
   def success?;@success;end
   def failure?;!success?;end
+  def errors;@errors;end
   def inspect;result;end
 end
 

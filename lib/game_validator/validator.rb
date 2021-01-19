@@ -7,14 +7,18 @@ module GameValidator
     extend Dry::Initializer
     option :validate_player_action_and_user, type: Types.Interface(:call)
     option :full_validator_for, type: Types::Hash
+    option :build_failure, type: Types.Interface(:call),
+      default: ->{GameValidator::Validator::Result::Failure::Builder::new}
 
     def call(action_hash:, user:)
       a = action_hash.dup
       a[:user] = user
       result = validate_player_action_and_user.(a)
-      return result if result.failure?
+      return build_failure.(errors: result.errors) if result.failure?
       validate = full_validator_for[[a[:player_action], a[:user].admin?]]
-      validate.(a)
+      result = validate.(a)
+      return build_failure.(errors: result.errors) if result.failure?
+      result
     end
   end
 end

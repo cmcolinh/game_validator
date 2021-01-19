@@ -19,10 +19,50 @@ RSpec.describe GameValidator::Validator do
           user: non_admin_user))}})
     let(:get_full_validator, &->{->{
       {
-        ['run', false]  => MethodCallCount::CallableStub::new,
-        ['run', true]   => MethodCallCount::CallableStub::new,
-        ['hide', false] => MethodCallCount::CallableStub::new,
-        ['hide', true]  => MethodCallCount::CallableStub::new
+        ['run', false]  => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: true,
+            player_action: 'run',
+            where: 'somewhere')),
+        ['run', true]   => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: true,
+            player_action: 'run',
+            where: 'somewhere')),
+        ['hide', false] => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: true,
+            player_action: 'hide',
+            where: 'somewhere')),
+        ['hide', true]  => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: true,
+            player_action: 'hide',
+            where: 'somewhere'))
+      }
+    }})
+    let(:get_full_validator_failure, &->{->{
+      {
+        ['run', false]  => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: false,
+            player_action: 'run',
+            where: 'somewhere')),
+        ['run', true]   => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: false,
+            player_action: 'run',
+            where: 'somewhere')),
+        ['hide', false] => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: false,
+            player_action: 'hide',
+            where: 'somewhere')),
+        ['hide', true]  => MethodCallCount::CallableStub::new(
+          MockValidationResult::new(
+            success?: false,
+            player_action: 'hide',
+            where: 'somewhere'))
       }
     }})
     let(:action_hash_run, &->{{player_action: 'run', where: 'somewhere'}})
