@@ -66,16 +66,16 @@ class RunValidator
   end
 end
 ```
-You then need to arrange all of the possible validators in a hash, with a two element array as the key, the first element being the string value of player_action, and whether the validator is for an admin or non admin as the second element.  If the same validator should apply whether or not the user is an admin or not, the same element should be added twice, with the admin portion being both true and false
+You then need to arrange all of the possible validators in a hash, with either a String or Hash key the value being the value of player_action, or a two element array as the key, the first element being the string value of player_action, and whether the validator is for an admin or non admin as the second element.  If the same validator should apply whether or not the user is an admin or not, the same element should be added twice, with the admin portion being both true and false
 
 ```
 full_validator = {
-  ['run', true] => run_validator,
-  ['run', false] => run_validator, #note it is the same validator
+  'run' => run_validator,
   ['hide', true] => hide_admin_validator,
-  ['hide', false] => hide_non_admin_validator # in this case I am using a different validator
+  ['hide', false] => hide_non_admin_validator # using a hash with two elements as the key in the event I need different validators for admin and non-admin
 }
 ```
+
 In this fashion, you create the full validator as follows
 ```
 GameValidator::Validator::new(
