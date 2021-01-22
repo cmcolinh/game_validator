@@ -1,6 +1,7 @@
 # frozen string_literal: true
 
 require 'game_validator/validator/base'
+require 'game_validator/validator/full_validator_coercer'
 
 module GameValidator
   class Validator
