@@ -1,14 +1,12 @@
 # frozen string_literal: true
 
 require 'dry-validation'
-require 'dry-initializer'
 
 Dry::Validation.load_extensions(:monads)
 
 module GameValidator
   class Validator
     class Base < Dry::Validation::Contract
-      extend Dry::Initializer
       option :legal_options, type: Types::Array.of(Types::String)
       option :next_player_id, type: Types::Coercible::Integer
 

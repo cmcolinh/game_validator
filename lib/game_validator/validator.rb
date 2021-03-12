@@ -17,7 +17,7 @@ module GameValidator
       result = validate_player_action_and_user.(a)
       return build_failure.(errors: result.errors) if result.failure?
       validate = full_validator_for[[a[:player_action], a[:user].admin?]]
-      result = validate.(a)
+      result = validate.(action_hash)
       return build_failure.(errors: result.errors) if result.failure?
       result
     end

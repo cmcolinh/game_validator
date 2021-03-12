@@ -20,6 +20,7 @@ class MockValidationResult
   def failure?;!success?;end
   def errors;@errors;end
   def inspect;result;end
+  def to_h;{};end
 end
 
 class MockUser
