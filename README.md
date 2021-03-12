@@ -83,6 +83,23 @@ GameValidator::Validator::new(
   full_validator_for: full_validator)
 ```
 
+You can also wrap successful results from the validator, using GameValidator::Validator::ValidateToAction and GameValidator::Validator::Result
+```
+class DoStuff
+  def call(change_orders:, **args)
+    # do stuff
+    change_orders
+  end
+end
+
+GameValidator::Validator::ValidateToAction::new(
+  validator: some_regular validator,
+  wrap: ->(successful_result){GameValidator::Validator::Result::new(
+    result: successful_result,
+    execute: DoStuff::new)})
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
