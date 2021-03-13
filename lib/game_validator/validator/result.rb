@@ -13,7 +13,7 @@ module GameValidator
       end
 
       def call(**args)
-        @execute.(to_h, args)
+        @execute.(to_h.merge(args))
       end
     end
   end

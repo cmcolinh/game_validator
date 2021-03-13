@@ -23,10 +23,11 @@ RSpec.describe GameValidator::Validator::ValidateToAction do
 
       it 'returns the result of calling unsuccessfully_validate' do
         wrap = get_wrap.()
+        unsuccessful_validation = unsuccessfully_validate.(input: 'mocked')
         validate = GameValidator::Validator::ValidateToAction::new(
           validate: unsuccessfully_validate,
           wrap: wrap)
-        expect(validate.(input: 'mocked')).to eq(unsuccessfully_validate.(input: 'mocked'))
+        expect(validate.(input: 'mocked').eql?(unsuccessful_validation)).to be true
       end
 
       it 'does not call @wrap' do

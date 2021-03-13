@@ -20,7 +20,10 @@ class MockValidationResult
   def failure?;!success?;end
   def errors;@errors;end
   def inspect;result;end
-  def to_h;{};end
+  def to_h;result;end
+  def eql?(other)
+    other.is_a?(MockValidationResult) && other.result.eql?(self.result)
+  end
 end
 
 class MockUser
