@@ -2,7 +2,7 @@ lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "game_validator/version"
 
-Gem::Specification.new 'game_validator', '0.4.1' do |spec|
+Gem::Specification.new 'game_validator', '0.5.0' do |spec|
   spec.name          = 'game_validator'
   spec.version       = GameValidator::VERSION
   spec.authors       = ['Colin Horner']
