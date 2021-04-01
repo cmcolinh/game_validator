@@ -6,9 +6,9 @@ require 'game_validator/validator/full_validator_coercer'
 module GameValidator
   class Validator
     extend Dry::Initializer
-    option :validate_player_action_and_user, type: Types.Interface(:call)
+    option :validate_player_action_and_user, type: Types::Callable
     option :full_validator_for, type: Types::Hash
-    option :build_failure, type: Types.Interface(:call),
+    option :build_failure, type: Types::Callable,
       default: ->{GameValidator::Validator::Result::Failure::Builder::new}
 
     def call(action_hash:, user:)
