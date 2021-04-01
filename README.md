@@ -79,9 +79,10 @@ full_validator = {
 In this fashion, you create the full validator as follows
 ```
 GameValidator::Validator::new(
-  validate_player_action_and_user: GameValidator::Validator::Base::new(legal_options: ['run', 'hide'], next_player_id: 1),
+  validate_player_action_and_user: GameValidator::Validator::Base::new(legal_options: ['run', 'hide'], next_player_id: 1, last_action_id: 1),
   full_validator_for: full_validator)
 ```
+Note the last_action_id option, to make sure that you are validating against the most recent action in the game.
 
 You can also wrap successful results from the validator, using GameValidator::Validator::ValidateToAction and GameValidator::Validator::Result
 ```
@@ -98,7 +99,6 @@ GameValidator::Validator::ValidateToAction::new(
     result: successful_result,
     execute: DoStuff::new)})
 ```
-
 
 ## Development
 
