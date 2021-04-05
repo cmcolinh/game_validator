@@ -11,6 +11,7 @@ end
 Types::ArrayOfCallable = Types::Array::of(Types::Callable)
 Types::ArrayOfStrictInteger = Types::Array::of(Types::Strict::Integer)
 Types::ArrayOfString = Types::Array::of(Types::String)
+Types::CoercibleNonnegativeInteger = Types::Coercible::Integer.constrained(gteq: 0)
 
 require 'game_validator/version'
 require 'game_validator/validator'
