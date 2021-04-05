@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    game_validator (0.6.0)
+    game_validator (0.6.1)
 
 GEM
   remote: https://rubygems.org/
@@ -77,4 +77,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.0.2
+   2.2.15
